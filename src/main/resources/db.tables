@@ -1,0 +1,46 @@
+CREATE TABLE USER(
+userId int NOT NULL UNIQUE AUTO_INCREMENT,
+username varchar(255) NOT NULL UNIQUE,
+password varchar(255) NOT NULL,
+firstname varchar(255) NOT NULL,
+lastname varchar(255) NOT NULL,
+PRIMARY KEY (userId)
+)
+
+CREATE TABLE PLAYLIST (
+listId int NOT NULL UNIQUE AUTO_INCREMENT,
+name varchar(255) NOT NULL,
+userId int NOT NULL,
+PRIMARY KEY (listId),
+FOREIGN KEY (userId) REFERENCES USER(userId)
+);
+
+CREATE TABLE TRACK(
+id int NOT NULL UNIQUE AUTO_INCREMENT,
+performer varchar(255) NOT NULL,
+titel varchar(255) NOT NULL,
+afspeelduur int NOT NULL,
+playcount int NULL,
+album varchar(255) NULL,
+publicatiedatum DATE NULL,
+beschrijving TEXT(500) NULL,
+offlineloading TINYINT NOT NULL,
+PRIMARY KEY (performer, titel)
+);
+
+
+INSERT INTO USER(username, password,firstname,lastname) VALUES("Martijn","2bb80d537b1da3e38bd30361aa855686bde0eacd7162fef6a25fe97bf527a25b","Martijn","Engel");
+INSERT INTO USER(username, password,firstname,lastname) VALUES("meron","4a76c706eeb50a6ed472923fd39eb33332a37e8b676f68f891d60cee7e9800b3","Meron","Brouwer");
+INSERT INTO PLAYLIST(name, owner) VALUES("Heavy Metal",2);
+INSERT INTO PLAYLIST(name, owner, userId) VALUES("Pop",1);
+INSERT INTO TRACK(titel, performer, afspeelduur, album,playcount, publicatiedatum, beschrijving, offlineloading ) VALUES("Song for someone","The Flames", 350,"The cost",NULL,NULL,NULL,FALSE);
+INSERT INTO TRACK(titel, performer, afspeelduur, album,playcount, publicatiedatum, beschrijving, offlineloading ) VALUES("The cost", "The Flames", 423,NULL,37,"2006-03-19","Title song from the Album The Cost",TRUE);
+INSERT INTO TRACK(titel, performer, afspeelduur, album,playcount, publicatiedatum, beschrijving, offlineloading ) VALUES("So long, Marianne", "Leonard Cohen", 546,"Song of leonard Cohen",NULL,NULL,NULL,FALSE);
+
+
+INSERT INTO TRACK(  titel,              performer,      afspeelduur,    album,      playcount,      publicatiedatum,    beschrijving,   offlineloading )
+VALUES(             "Song for someone", "The Flames",   350,            "The cost", "NULL",         "2009-",               NULL,           FALSE);
+INSERT INTO TRACK(titel, performer, afspeelduur, album,playcount, publicatiedatum, beschrijving, offlineloading )
+VALUES("The cost", "The Flames", 423,NULL,37,"2006-03-19","Title song from the Album The Cost",TRUE);
+INSERT INTO TRACK(titel, performer, afspeelduur, album,playcount, publicatiedatum, beschrijving, offlineloading )
+ VALUES("So long, Marianne", "Leonard Cohen", 546,"Song of leonard Cohen",NULL,NULL,NULL,FALSE);
